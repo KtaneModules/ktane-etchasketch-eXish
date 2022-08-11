@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4624123864797244}
   - component: {fileID: 212013093764069152}
   - component: {fileID: 114924095380189758}
+  - component: {fileID: 114982572073122878}
   m_Layer: 0
   m_Name: BImg
   m_TagString: Untagged
@@ -88,6 +89,7 @@ GameObject:
   - component: {fileID: 4606595992274228}
   - component: {fileID: 33812655043181538}
   - component: {fileID: 23329823138842552}
+  - component: {fileID: 114873284605457822}
   m_Layer: 0
   m_Name: Screen_Background
   m_TagString: Untagged
@@ -170,6 +172,7 @@ GameObject:
   - component: {fileID: 4903792359374992}
   - component: {fileID: 33761334297123304}
   - component: {fileID: 23885032220485204}
+  - component: {fileID: 114986074310526030}
   m_Layer: 0
   m_Name: Component_PuzzleBackground
   m_TagString: Untagged
@@ -205,6 +208,7 @@ GameObject:
   - component: {fileID: 4966849618484376}
   - component: {fileID: 33115336515930628}
   - component: {fileID: 23940477465558510}
+  - component: {fileID: 114408147704675134}
   m_Layer: 0
   m_Name: KnobLeft
   m_TagString: Untagged
@@ -222,6 +226,7 @@ GameObject:
   - component: {fileID: 4918539743842850}
   - component: {fileID: 33322920341352420}
   - component: {fileID: 23140312783326468}
+  - component: {fileID: 114835569066688570}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -304,7 +309,7 @@ GameObject:
   - component: {fileID: 4717097538029176}
   - component: {fileID: 33608484208038648}
   - component: {fileID: 23793978227783766}
-  - component: {fileID: 114448009675509170}
+  - component: {fileID: 114767977326951878}
   m_Layer: 0
   m_Name: Pixel
   m_TagString: Untagged
@@ -322,6 +327,7 @@ GameObject:
   - component: {fileID: 4717833706117512}
   - component: {fileID: 33389455978655850}
   - component: {fileID: 23158339327158622}
+  - component: {fileID: 114991018700877316}
   m_Layer: 0
   m_Name: KnobRight
   m_TagString: Untagged
@@ -340,6 +346,7 @@ GameObject:
   - component: {fileID: 23550996078810566}
   - component: {fileID: 102203276349410484}
   - component: {fileID: 114122072467781198}
+  - component: {fileID: 114971536776341118}
   m_Layer: 0
   m_Name: KText
   m_TagString: Untagged
@@ -534,7 +541,7 @@ Transform:
   m_GameObject: {fileID: 1002429435694018}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.02666, z: -0.0095}
-  m_LocalScale: {x: 0.0529105, y: 0.0529105, z: 0.0529105}
+  m_LocalScale: {x: 0.045, y: 0.045, z: 0.045}
   m_Children: []
   m_Father: {fileID: 4354728421890196}
   m_RootOrder: 19
@@ -573,7 +580,7 @@ Transform:
   m_GameObject: {fileID: 1637347001186096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
+  m_LocalScale: {x: 0.0012, y: 0.0012, z: 0.0012}
   m_Children: []
   m_Father: {fileID: 4255498189750168}
   m_RootOrder: 0
@@ -1264,17 +1271,19 @@ MonoBehaviour:
   AllowSelectionWrapY: 0
   ForceSelectionHighlight: 0
   ForceInteractionHighlight: 0
---- !u!114 &114448009675509170
+--- !u!114 &114408147704675134
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1637347001186096}
+  m_GameObject: {fileID: 1447929288318302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4123d4b266ccb0b42b6bcbd7312ba47a, type: 3}
+  m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShaderNames:
+  - KT/Mobile/DiffuseTint
 --- !u!114 &114607527079677280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1324,6 +1333,45 @@ MonoBehaviour:
   DelegateNames: []
   Indexes: 
   UseReturnValues: 
+--- !u!114 &114767977326951878
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1637347001186096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShaderNames:
+  - KT/Mobile/DiffuseTint
+--- !u!114 &114835569066688570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1476223658287482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShaderNames:
+  - KT/Mobile/DiffuseTint
+--- !u!114 &114873284605457822
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1119137881516784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShaderNames:
+  - KT/Mobile/DiffuseTint
 --- !u!114 &114877524073316870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1378,7 +1426,6 @@ MonoBehaviour:
   KnobRight: {fileID: 4717833706117512}
   Cursor: {fileID: 4255498189750168}
   Pixel: {fileID: 1637347001186096}
-  PixelShaken: {fileID: 2100000, guid: 62ef6766e0af398498f300a87a879db7, type: 2}
   TopLeft: {fileID: 4355409380950688}
   BottomRight: {fileID: 4983092844006374}
   PixelContainer: {fileID: 4526417724527612}
@@ -1439,6 +1486,45 @@ MonoBehaviour:
   DelegateNames: []
   Indexes: 
   UseReturnValues: 
+--- !u!114 &114971536776341118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816181754433850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShaderNames:
+  - GUI/KT 3D Text Diffuse
+--- !u!114 &114982572073122878
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1002429435694018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShaderNames:
+  - Sprites/Default
+--- !u!114 &114986074310526030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1355094296876494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShaderNames:
+  - KT/Mobile/Diffuse
 --- !u!114 &114988224661706850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1450,6 +1536,19 @@ MonoBehaviour:
   m_Script: {fileID: -1675560866, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114991018700877316
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1787024718591204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShaderNames:
+  - KT/Mobile/DiffuseTint
 --- !u!212 &212013093764069152
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -1484,12 +1583,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2e757bc2a0c859c40a1a1f6e83c8dbb7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e64c98531368214e8df5972a7b19eb5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.48, y: 1.6}
+  m_Size: {x: 1.84, y: 1.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

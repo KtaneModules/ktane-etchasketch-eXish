@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615501dbe4f3fe94fbf4b564abb10237, type: 3}
+  m_Name: ModConfig
+  m_EditorClassIdentifier: 
+  id: etchASketch
+  title: Etch-A-Sketch
+  author: eXish
+  description: "Make some art using the Etch-A-Sketch.\n\nThis is a reuploaded item
+    from a creator who wishes to remain anonymous.\r\n\r\nHTML: https://ktane.timwi.de/HTML/Etch-A-Sketch.html\r\nPDF:
+    https://ktane.timwi.de/PDF/Etch-A-Sketch.pdf\r\n\r\nEtch-A-Sketch (etchASketch)
+    v1.2.0\r\nMaintained by eXish\r\nTwitch Plays supported\n\n"
+  version: 1.2.0
+  outputFolder: build
+  previewImage: {fileID: 2800000, guid: 1385048b82d21174ca46818fedf06d8f, type: 3}

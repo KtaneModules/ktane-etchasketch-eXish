@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class etchASketchScript : MonoBehaviour
@@ -151,16 +152,20 @@ public class etchASketchScript : MonoBehaviour
 		GameObject gameObject2 = Instantiate(Pixel);
 		gameObject2.transform.SetParent(PixelContainer);
 		gameObject2.transform.localPosition = new Vector3(x, Cursor.localPosition.y, z);
+		gameObject2.transform.localScale = new Vector3(0.0012f, 0.0012f, 0.0012f);
 		Pixels.Add(gameObject2);
 		totalDrawn++;
-		if (totalDrawn >= 1000 && !_isSolved)
+		if (totalDrawn >= 800 && !_isSolved)
 		{
 			Module.HandlePass();
 			_isSolved = true;
-			Debug.LogFormat("[Etch-A-Sketch #{0}] You have made some wonderful art! Good job. Module solved.", new object[]
+			Debug.LogFormat("[Etch-A-Sketch #{0}] You have made some {1} art! Good job. Module solved.", new object[]
 			{
-				_moduleId
+				_moduleId,
+				new string[]{ "wonderful", "splendid", "fantastic", "exemplary", "decent", "honestly pretty bad", "mugumphrous" }.PickRandom()
 			});
+			if (TwitchPlaysActive)
+				StopAllCoroutines();
 		}
 	}
 
@@ -180,15 +185,8 @@ public class etchASketchScript : MonoBehaviour
 			{
 				if (UnityEngine.Random.Range(0f, 100f) < 15f)
 				{
-					if (gameObject.GetComponent<PixelData>().Next())
-					{
-						gameObject.GetComponent<MeshRenderer>().material = PixelShaken;
-					}
-					else
-					{
-						Pixels.Remove(gameObject);
-						Destroy(gameObject);
-					}
+					Pixels.Remove(gameObject);
+					Destroy(gameObject);
 				}
 			}
 		}
@@ -210,22 +208,17 @@ public class etchASketchScript : MonoBehaviour
 		};
 		int[] collection2 = new int[]
 		{
-			1,
-			0,
-			0,
+			3,
 			2,
-			1,
-			0,
-			1,
-			3,
-			1,
 			0,
 			3,
 			0,
-			1,
-			1,
+			3,
 			0,
-			3
+			0,
+			1,
+			1,
+			2
 		};
 		List<int> list = new List<int>();
 		List<int> list2 = new List<int>();
@@ -236,13 +229,13 @@ public class etchASketchScript : MonoBehaviour
 		List<int> list3 = new List<int>();
 		easterEggs.CopyTo(array);
 		list3.AddRange(array);
-		while (list3.Count > 16)
+		while (list3.Count > 11)
 		{
 			list3.RemoveAt(0);
 		}
 		if (list3.Join(" ") == list2.Join(" "))
 		{
-			StartCoroutine("Bagels");
+			StartCoroutine("Blan");
 		}
 		while (list3.Count > 8)
 		{
@@ -262,13 +255,130 @@ public class etchASketchScript : MonoBehaviour
 		yield break;
 	}
 
-	private IEnumerator Bagels()
+	private IEnumerator Blan()
 	{
 		Module.GetComponentInChildren<BEgg>().Show();
 		yield return new WaitForSeconds(1f);
 		Module.GetComponentInChildren<BEgg>().Hide();
 		yield break;
 	}
+
+	private IEnumerator ProcessTwitchCommand(string command)
+    {
+		command = Regex.Replace(command, @"\s+", " ");
+		string[] parameters = command.Split(new char[]{',',';'});
+		for (int i = 0; i < parameters.Length; i++)
+        {
+			string[] temp = parameters[i].Trim().Split(' ');
+			if (temp.Length != 3)
+			{
+				yield return "sendtochaterror!f Invalid number of parameters for the command '" + parameters[i] + "'!";
+				yield break;
+			}
+			if (!temp[0].ToLowerInvariant().EqualsAny("left", "right"))
+            {
+				yield return "sendtochaterror!f The specified knob '" + temp[0] + "' is invalid!";
+				yield break;
+            }
+			if (!temp[1].ToLowerInvariant().EqualsAny("cw", "ccw"))
+			{
+				yield return "sendtochaterror!f The specified direction '" + temp[1] + "' is invalid!";
+				yield break;
+			}
+			float time;
+			if (!float.TryParse(temp[2], out time))
+			{
+				yield return "sendtochaterror!f The specified time '" + temp[2] + "' is invalid!";
+				yield break;
+			}
+			if (time <= 0)
+			{
+				yield return "sendtochaterror The specified time '" + temp[2] + "' cannot be negative or zero!";
+				yield break;
+			}
+		}
+		yield return null;
+		for (int i = 0; i < parameters.Length; i++)
+		{
+			string[] temp = parameters[i].ToLowerInvariant().Trim().Split(' ');
+			if (temp[0] == "left" && temp[1] == "ccw")
+				LeftLeft.OnInteract();
+			else if (temp[0] == "left" && temp[1] == "cw")
+				LeftRight.OnInteract();
+			else if (temp[0] == "right" && temp[1] == "ccw")
+				RightLeft.OnInteract();
+			else
+				RightRight.OnInteract();
+			float time = float.Parse(temp[2]);
+			float t = 0f;
+			while (t < time)
+            {
+				yield return null;
+				if (TwitchShouldCancelCommand)
+					break;
+				t += Time.deltaTime;
+            }
+			if (temp[0] == "left" && temp[1] == "ccw")
+				LeftLeft.OnInteractEnded();
+			else if (temp[0] == "left" && temp[1] == "cw")
+				LeftRight.OnInteractEnded();
+			else if (temp[0] == "right" && temp[1] == "ccw")
+				RightLeft.OnInteractEnded();
+			else
+				RightRight.OnInteractEnded();
+			if (TwitchShouldCancelCommand)
+				yield return "cancelled";
+		}
+	}
+
+	private IEnumerator TwitchHandleForcedSolve()
+    {
+		while (!_isSolved)
+        {
+			float time = UnityEngine.Random.Range(0.1f, 2f);
+			int dir = UnityEngine.Random.Range(0, 4);
+			float t = 0f;
+			switch (dir)
+            {
+				case 0:
+					LeftLeft.OnInteract();
+					while (t < time && !_isSolved && TopLeft.localPosition.x < Cursor.localPosition.x)
+                    {
+						yield return null;
+						t += Time.deltaTime;
+					}
+					LeftLeft.OnInteractEnded();
+					break;
+				case 1:
+					LeftRight.OnInteract();
+					while (t < time && !_isSolved && BottomRight.localPosition.x > Cursor.localPosition.x)
+					{
+						yield return null;
+						t += Time.deltaTime;
+					}
+					LeftRight.OnInteractEnded();
+					break;
+				case 2:
+					RightLeft.OnInteract();
+					while (t < time && !_isSolved && BottomRight.localPosition.z < Cursor.localPosition.z)
+					{
+						yield return null;
+						t += Time.deltaTime;
+					}
+					RightLeft.OnInteractEnded();
+					break;
+				default:
+					RightRight.OnInteract();
+					while (t < time && !_isSolved && TopLeft.localPosition.z > Cursor.localPosition.z)
+					{
+						yield return null;
+						t += Time.deltaTime;
+					}
+					RightRight.OnInteractEnded();
+					break;
+			}
+		}
+    }
 
 	public KMBombModule Module;
 
@@ -287,8 +397,6 @@ public class etchASketchScript : MonoBehaviour
 	public Transform Cursor;
 
 	public GameObject Pixel;
-
-	public Material PixelShaken;
 
 	public Transform TopLeft;
 
@@ -315,4 +423,10 @@ public class etchASketchScript : MonoBehaviour
 	private Transform _rootXForm;
 
 	private Quaternion _rootObjectLastOrientation = Quaternion.identity;
+
+	private bool TwitchShouldCancelCommand;
+
+	private bool TwitchPlaysActive;
+
+	private readonly string TwitchHelpMessage = "!{0} left/right <cw/ccw> <time> [Turns the left or right knob clockwise or counter-clockwise for a certain number of seconds] | Commands can be chained using semicolons or commas";
 }
