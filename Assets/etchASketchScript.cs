@@ -164,8 +164,11 @@ public class etchASketchScript : MonoBehaviour
 				_moduleId,
 				new string[]{ "wonderful", "splendid", "fantastic", "exemplary", "decent", "honestly pretty bad", "mugumphrous" }.PickRandom()
 			});
-			if (TwitchPlaysActive)
+			if (_tpGoing)
+			{
+				_tpGoing = false;
 				StopAllCoroutines();
+			}
 		}
 	}
 
@@ -298,6 +301,7 @@ public class etchASketchScript : MonoBehaviour
 			}
 		}
 		yield return null;
+		_tpGoing = true;
 		for (int i = 0; i < parameters.Length; i++)
 		{
 			string[] temp = parameters[i].ToLowerInvariant().Trim().Split(' ');
@@ -327,8 +331,11 @@ public class etchASketchScript : MonoBehaviour
 			else
 				RightRight.OnInteractEnded();
 			if (TwitchShouldCancelCommand)
-				yield return "cancelled";
+				break;
 		}
+		_tpGoing = false;
+		if (TwitchShouldCancelCommand)
+			yield return "cancelled";
 	}
 
 	private IEnumerator TwitchHandleForcedSolve()
@@ -416,6 +423,8 @@ public class etchASketchScript : MonoBehaviour
 
 	private bool _isSolved;
 
+	private bool _tpGoing;
+
 	private List<int> easterEggs = new List<int>();
 
 	private static readonly float MAXIMUM_ROTATION_VALUE = 30f;
@@ -425,8 +434,6 @@ public class etchASketchScript : MonoBehaviour
 	private Quaternion _rootObjectLastOrientation = Quaternion.identity;
 
 	private bool TwitchShouldCancelCommand;
-
-	private bool TwitchPlaysActive;
 
 	private readonly string TwitchHelpMessage = "!{0} left/right <cw/ccw> <time> [Turns the left or right knob clockwise or counter-clockwise for a certain number of seconds] | Commands can be chained using semicolons or commas";
 }
