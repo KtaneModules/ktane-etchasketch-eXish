@@ -90,7 +90,7 @@ public class etchASketchScript : MonoBehaviour
 		{
 			if (TopLeft.localPosition.z > Cursor.localPosition.z)
 			{
-				Cursor.localPosition += (new Vector3(0f, 0f, 0.001f));
+				Cursor.localPosition += (new Vector3(0f, 0f, 0.0012f));
 			}
 			DrawNewPixel(Cursor.localPosition.x, Cursor.localPosition.z);
 			KnobRight.Rotate(new Vector3(0f, 0f, 2f));
@@ -104,7 +104,7 @@ public class etchASketchScript : MonoBehaviour
 		{
 			if (BottomRight.localPosition.z < Cursor.localPosition.z)
 			{
-				Cursor.localPosition += (new Vector3(0f, 0f, -0.001f));
+				Cursor.localPosition += (new Vector3(0f, 0f, -0.0012f));
 			}
 			DrawNewPixel(Cursor.localPosition.x, Cursor.localPosition.z);
 			KnobRight.Rotate(new Vector3(0f, 0f, -2f));
@@ -118,7 +118,7 @@ public class etchASketchScript : MonoBehaviour
 		{
 			if (TopLeft.localPosition.x < Cursor.localPosition.x)
 			{
-				Cursor.localPosition += (new Vector3(-0.001f, 0f, 0f));
+				Cursor.localPosition += (new Vector3(-0.0012f, 0f, 0f));
 			}
 			DrawNewPixel(Cursor.localPosition.x, Cursor.localPosition.z);
 			KnobLeft.Rotate(new Vector3(0f, 0f, -2f));
@@ -132,7 +132,7 @@ public class etchASketchScript : MonoBehaviour
 		{
 			if (BottomRight.localPosition.x > Cursor.localPosition.x)
 			{
-				Cursor.localPosition += (new Vector3(0.001f, 0f, 0f));
+				Cursor.localPosition += (new Vector3(0.0012f, 0f, 0f));
 			}
 			DrawNewPixel(Cursor.localPosition.x, Cursor.localPosition.z);
 			KnobLeft.Rotate(new Vector3(0f, 0f, 2f));
