@@ -16,7 +16,7 @@ MonoBehaviour:
   author: eXish
   description: "Make some art using the Etch-A-Sketch.\n\r\nHTML: https://ktane.timwi.de/HTML/Etch-A-Sketch.html\r\nPDF:
     https://ktane.timwi.de/PDF/Etch-A-Sketch.pdf\r\n\r\nEtch-A-Sketch (etchASketch)
-    v1.2.2\nModule by BakersDozenBagels, maintained by eXish\r\nTwitch Plays supported\n\n"
+    v1.2.2\nModule by Anonymous, maintained by eXish\r\nTwitch Plays supported\n\n"
   version: 1.2.2
   outputFolder: build
   previewImage: {fileID: 2800000, guid: 1385048b82d21174ca46818fedf06d8f, type: 3}
